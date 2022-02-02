@@ -1,9 +1,9 @@
 import React from 'react'
-import { AppContainer } from './components/AppContainer'
+import { MainScreen } from './components/MainScreen'
 
 function App() {
 	return (
-        <AppContainer />
+        <MainScreen />
 	)
 }
 
