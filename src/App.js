@@ -8,6 +8,7 @@ class App extends React.Component {
     chosenPage: "home",
   };
 
+  
   //ensures that the selected page is being shown
   selectPage = () => {
     switch (this.state.chosenPage) {
