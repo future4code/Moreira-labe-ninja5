@@ -35,7 +35,7 @@ const BotaoFechado = styled.button`
 
 
 
-class Customer extends React.Component {
+class CustomerScreen extends React.Component {
 
   state = {
     servicos: [],
@@ -126,4 +126,4 @@ class Customer extends React.Component {
   }
 }
 
-export default Customer;
+export default CustomerScreen;

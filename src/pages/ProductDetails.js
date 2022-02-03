@@ -147,7 +147,7 @@ class ProductDetails extends React.Component {
         </Pagamento>
         <Valores>Até <strong>{dataFormatada}</strong> por <strong>R$ {this.props.price}</strong></Valores>
         <Botoes>
-          <Botao>VOLTAR AO CATÁLOGO</Botao>
+          <Botao onClick={this.props.goToCustomerScreen}>VOLTAR AO CATÁLOGO</Botao>
           {this.verificaBotaoCarrinho(this.props.taken,this.props.id)}
         </Botoes>
       </MainContainer>
