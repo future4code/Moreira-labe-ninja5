@@ -1,7 +1,8 @@
 import React from "react";
+import Header from "../components/Header";
 
 export class FreelancerScreen extends React.Component{
     render(){
-        return <h1>pagina de freelancer!</h1>
+        return <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart}></Header>
     }
 }
