@@ -131,7 +131,7 @@ class ProductDetails extends React.Component {
     })
   
     let data = new Date(this.props.dueDate)
-    let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+    let dataFormatada = ((data.getDate() + 1 )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
   
     
 

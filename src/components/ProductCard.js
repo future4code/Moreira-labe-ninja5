@@ -10,7 +10,7 @@ const MainContainer = styled.div`
   flex-direction: column;
   width: 300px;
   padding: 10px;
-  margin: 10px;
+  margin: 10px auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   h2{
     margin-left: 10px;
@@ -61,7 +61,7 @@ export class ProductCard extends React.Component {
   render() {
 
     let data = new Date(this.props.dueDate)
-    let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+    let dataFormatada = ((data.getDate() + 1 )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
 
     return (
       <MainContainer>
