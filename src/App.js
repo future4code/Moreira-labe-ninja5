@@ -1,11 +1,20 @@
 import React from "react";
 import { Home } from "./pages/Home";
-import { CustomerScreen } from "./pages/Customer";
+import CustomerScreen from "./pages/Customer";
 import { FreelancerScreen } from "./pages/Freelancer";
+import ProductDetails from './pages/ProductDetails'
+import ShoppingCart from './pages/ShoppingCart'
 
 class App extends React.Component {
   state = {
     chosenPage: "home",
+		id: "",
+    title: "",
+    description: "",
+    price: "",
+    paymentMethods: "",
+    dueDate: "",
+    taken: ""
   };
 
   
@@ -20,9 +29,46 @@ class App extends React.Component {
           />
         );
       case "customer":
-        return <CustomerScreen />;
+        return (
+					<CustomerScreen 
+						irParaDetalhes = {this.irParaDetalhes} 
+						irParaCarrinho = {this.irParaCarrinho} 
+					/>
+				)
       case "freelancer":
         return <FreelancerScreen />;
+			case "details":
+				return (
+					<ProductDetails 
+						id={this.state.id}
+						title={this.state.title}
+						description={this.state.description}
+						price={this.state.price}
+						paymentMethods={this.state.paymentMethods}
+						dueDate={this.state.dueDate}
+						taken={this.state.taken}
+						goToCustomerScreen = {this.goToCustomerScreen}
+					/>
+				)
+			case "shoppingCart":
+				return (
+					<ShoppingCart 
+						id={this.state.id}
+						title={this.state.title}
+						description={this.state.description}
+						price={this.state.price}
+						paymentMethods={this.state.paymentMethods}
+						dueDate={this.state.dueDate}
+						taken={this.state.taken}
+					/>
+				)
+				default:
+					return (
+						<Home
+							goToCustomerScreen={this.goToCustomerScreen}
+							goToFreelancerScreen={this.goToFreelancerScreen}
+						/>
+					);
     }
   };
 
@@ -35,6 +81,18 @@ class App extends React.Component {
   goToFreelancerScreen = () => {
     this.setState({ chosenPage: "freelancer" });
   };
+
+	irParaDetalhes = (id, title, description, price, paymentMethods, dueDate, taken) => {
+    this.setState({chosenPage: "details",id: id, title: title, description: description, price:price, paymentMethods: paymentMethods, dueDate: dueDate, taken: taken})
+  }
+
+  irParaCarrinho = (id, title, description, price, paymentMethods, dueDate, taken) => {
+    this.setState({chosenPage: "shoppingCart",id: id, title: title, description: description, price:price, paymentMethods: paymentMethods, dueDate: dueDate, taken: taken})
+  }
+
+
+
+
   render() {
     return <>{this.selectPage()}</>;
   }
