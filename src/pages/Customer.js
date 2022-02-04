@@ -2,6 +2,7 @@ import React from "react";
 import { ProductCard } from '../components/ProductCard'
 import styled from "styled-components";
 import axios from 'axios'
+import Header from "../components/Header";
 
 const MainContainer = styled.div`
   display: flex;
@@ -119,9 +120,13 @@ class CustomerScreen extends React.Component {
     })
 
     return (
-      <MainContainer>
-        {listaServicos}
-      </MainContainer>
+      <div>
+        <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart}></Header>
+        <MainContainer>
+          {listaServicos}
+        </MainContainer>
+      </div>
+      
     )
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
 import axios from 'axios';
+import Header from "../components/Header";
 
 const MainContainer = styled.div`
   border-radius: 5px;
@@ -136,6 +137,8 @@ class ProductDetails extends React.Component {
     
 
     return (
+      <div>
+      <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart}></Header>  
       <MainContainer>
         <h2>{this.props.title}</h2>
         <Descricao>{this.props.description}</Descricao>
@@ -151,6 +154,8 @@ class ProductDetails extends React.Component {
           {this.verificaBotaoCarrinho(this.props.taken,this.props.id)}
         </Botoes>
       </MainContainer>
+      </div>
+      
     )
   }
   
