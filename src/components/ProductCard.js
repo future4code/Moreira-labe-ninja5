@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const MainContainer = styled.div`
   border-radius: 5px;
-  background-color: #e6930d;
+  background-color: #EC8C00;
   color: white;
   display: flex;
   flex-direction: column;

@@ -2,11 +2,13 @@ import React from "react";
 import { ProductCard } from '../components/ProductCard'
 import styled from "styled-components";
 import axios from 'axios'
+import Header from "../components/Header";
 
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  padding: 10px;
+  /* background-color: #071226; */
 `
 
 const InputsContainer = styled.div`
@@ -21,20 +23,23 @@ const InputContainer = styled.div`
   flex-direction:column;
   width: 200px;
   input{
-    border: 1px solid black;
+    border: 1px solid #e6930d;
     border-radius: 5px;
     padding: 10px;
     background-color:transparent;
+    color: #e6930d;
   }
   select {
-    border: 1px solid black;
+    border: 1px solid #e6930d;
     border-radius: 5px;
     padding: 10px;
     background-color:transparent;
+    color: gray;
   }
   label{
+    color: #e6930d;
     position:absolute;
-    top: -0px;
+    top: 100px;
     background-color: white;
     padding: 0 10px;
     text-align:center;
@@ -220,6 +225,8 @@ class CustomerScreen extends React.Component {
     })
 
     return (
+     <div> 
+      <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart} />
       <MainContainer>
         <InputsContainer>
           <InputContainer>
@@ -260,6 +267,7 @@ class CustomerScreen extends React.Component {
           {listaServicos}
         </CardsContainer>
       </MainContainer>
+    </div>
     )
   }
 }

@@ -4,6 +4,7 @@ import CustomerScreen from "./pages/Customer";
 import { FreelancerScreen } from "./pages/Freelancer";
 import ProductDetails from './pages/ProductDetails'
 import ShoppingCart from './pages/ShoppingCart'
+import Header from "./components/Header";
 
 class App extends React.Component {
   state = {
@@ -26,6 +27,8 @@ class App extends React.Component {
           <Home
             goToCustomerScreen={this.goToCustomerScreen}
             goToFreelancerScreen={this.goToFreelancerScreen}
+            goToHomeScreen={this.goToHomeScreen}
+            goToShoppingCart={this.goToShoppingCart}
           />
         );
       case "customer":
@@ -33,10 +36,12 @@ class App extends React.Component {
 					<CustomerScreen 
 						irParaDetalhes = {this.irParaDetalhes} 
 						irParaCarrinho = {this.irParaCarrinho} 
+            goToHomeScreen={this.goToHomeScreen}
+            goToShoppingCart={this.goToShoppingCart}
 					/>
 				)
       case "freelancer":
-        return <FreelancerScreen />;
+        return <FreelancerScreen goToHomeScreen={this.goToHomeScreen} goToShoppingCart={this.goToShoppingCart} />;
 			case "details":
 				return (
 					<ProductDetails 
@@ -48,6 +53,8 @@ class App extends React.Component {
 						dueDate={this.state.dueDate}
 						taken={this.state.taken}
 						goToCustomerScreen = {this.goToCustomerScreen}
+            goToHomeScreen={this.goToHomeScreen}
+            goToShoppingCart={this.goToShoppingCart}
 					/>
 				)
 			case "shoppingCart":
@@ -60,6 +67,8 @@ class App extends React.Component {
 						paymentMethods={this.state.paymentMethods}
 						dueDate={this.state.dueDate}
 						taken={this.state.taken}
+            goToHomeScreen={this.goToHomeScreen}
+            goToShoppingCart={this.goToShoppingCart}
 					/>
 				)
 				default:
@@ -67,6 +76,8 @@ class App extends React.Component {
 						<Home
 							goToCustomerScreen={this.goToCustomerScreen}
 							goToFreelancerScreen={this.goToFreelancerScreen}
+              goToHomeScreen={this.goToHomeScreen}
+              goToShoppingCart={this.goToShoppingCart}
 						/>
 					);
     }
@@ -80,6 +91,14 @@ class App extends React.Component {
   //onclick freelancer page selector
   goToFreelancerScreen = () => {
     this.setState({ chosenPage: "freelancer" });
+  };
+  
+  goToHomeScreen = () => {
+    this.setState({ chosenPage: "home" });
+  };
+
+  goToShoppingCart = () => {
+    this.setState({ chosenPage: "shoppingCart" });
   };
 
 	irParaDetalhes = (id, title, description, price, paymentMethods, dueDate, taken) => {

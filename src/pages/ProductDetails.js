@@ -1,10 +1,15 @@
 import React from "react";
 import styled from 'styled-components';
 import axios from 'axios';
+import Header from "../components/Header";
+
+const Container = styled.div`
+
+`
 
 const MainContainer = styled.div`
   border-radius: 5px;
-  background-color: #e6930d;
+  background-color: #EC8C00;
   color: white;
   display: flex;
   flex-direction: column;
@@ -136,6 +141,8 @@ class ProductDetails extends React.Component {
     
 
     return (
+      <Container>
+      <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart}></Header>  
       <MainContainer>
         <h2>{this.props.title}</h2>
         <Descricao>{this.props.description}</Descricao>
@@ -151,6 +158,8 @@ class ProductDetails extends React.Component {
           {this.verificaBotaoCarrinho(this.props.taken,this.props.id)}
         </Botoes>
       </MainContainer>
+      </Container>
+      
     )
   }
   
