@@ -2,9 +2,9 @@ import React from "react";
 import { Home } from "./pages/Home";
 import CustomerScreen from "./pages/Customer";
 import { FreelancerScreen } from "./pages/Freelancer";
-import ProductDetails from './pages/ProductDetails'
-import ShoppingCart from './pages/ShoppingCart'
-import Header from "./components/Header";
+import ProductDetails from './pages/ProductDetails';
+import ShoppingCart from './pages/ShoppingCart';
+
 
 class App extends React.Component {
   state = {
