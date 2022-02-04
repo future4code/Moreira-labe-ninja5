@@ -27,8 +27,8 @@ import styled from "styled-components";
 const FormularioTot = styled.div`
   form{
       display:flex;
-      flex:direction-column;
-      aling-items:center;
+      flex-direction: column;
+      align-items:center;
       justify-content:center;
      }
  
@@ -37,15 +37,15 @@ const FormularioTot = styled.div`
     text-align:center;
     color:#2B27C4;
     font-size:40px;
-    background-color:;
    }  
 `
 const ContainerInput = styled.fieldset`
 display:flex;
 flex-direction:column;
 width:50%;
-margin-top:200px;
+margin-top:100px;
 border-radius:15px;
+border: none;
 background-color:#ec8c00;
 box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 `
@@ -99,8 +99,8 @@ const headers = {
 export class FreelancerScreen extends React.Component{
     state = {
         nome:"",
-        titulo:"ewerton",
-        descricao:"dev",
+        titulo:"",
+        descricao:"",
         preco:"",
         pgt:[],
         prazo:""
@@ -206,13 +206,6 @@ export class FreelancerScreen extends React.Component{
           {/* função da api  */}
             <Botao type="submit"onClick={this.CreateJob}>Cadastrar</Botao>
             </ContainerInput>
-            
-            
-            
-            
-            
-           
-            
             {/* <p>item selecionado {this.state.valor}</p> */}
           
         </form>

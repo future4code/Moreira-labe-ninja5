@@ -103,10 +103,10 @@ class ProductDetails extends React.Component {
 
   verificaBotaoCarrinho = (taken,id) => {
     if(taken) {
-      return <BotaoFechado>ADICIONAR AO CARRINHO</BotaoFechado>
+      return <BotaoFechado><span class="material-icons">shopping_cart </span></BotaoFechado>
     }
     else {
-      return <Botao onClick={() => this.addCarrinho(id)}>ADICIONAR AO CARRINHO</Botao>
+      return <Botao onClick={() => this.addCarrinho(id)}><span class="material-icons">shopping_cart </span></Botao>
     }
   }
 
@@ -154,7 +154,9 @@ class ProductDetails extends React.Component {
         </Pagamento>
         <Valores>Até <strong>{dataFormatada}</strong> por <strong>R$ {this.props.price}</strong></Valores>
         <Botoes>
-          <Botao onClick={this.props.goToCustomerScreen}>VOLTAR AO CATÁLOGO</Botao>
+          <Botao onClick={this.props.goToCustomerScreen}><span class="material-icons">
+keyboard_return
+</span></Botao>
           {this.verificaBotaoCarrinho(this.props.taken,this.props.id)}
         </Botoes>
       </MainContainer>

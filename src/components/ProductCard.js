@@ -75,7 +75,9 @@ export class ProductCard extends React.Component {
           <p>Até {dataFormatada}</p>
         </Valores>
         <Botoes>
-          <Botao onClick={this.props.irParaDetalhes}>DETALHES</Botao>
+          <Botao onClick={this.props.irParaDetalhes}><span class="material-icons">
+info
+</span></Botao>
           {this.props.verificaBotaoCarrinho(this.props.taken, this.props.id)}
         </Botoes>
       </MainContainer>

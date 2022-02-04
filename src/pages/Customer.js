@@ -8,7 +8,7 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 10px;
-  /* background-color: #071226; */
+  margin-top: 30px;
 `
 
 const InputsContainer = styled.div`
@@ -39,7 +39,7 @@ const InputContainer = styled.div`
   label{
     color: #e6930d;
     position:absolute;
-    top: 100px;
+    top: 130px;
     background-color: white;
     padding: 0 10px;
     text-align:center;
@@ -107,7 +107,6 @@ class CustomerScreen extends React.Component {
       }
     })
     .then(resp => {
-      console.log(resp.data.jobs)
       this.setState({servicos: resp.data.jobs})
     })
     .catch(err => {
@@ -119,10 +118,10 @@ class CustomerScreen extends React.Component {
   
   verificaBotaoCarrinho = (taken,id) => {
     if(taken) {
-      return <BotaoFechado>ADICIONAR AO CARRINHO</BotaoFechado>
+      return <BotaoFechado><span class="material-icons">shopping_cart </span></BotaoFechado>
     }
     else {
-      return <Botao onClick={() => this.addCarrinho(id)}>ADICIONAR AO CARRINHO</Botao>
+      return <Botao onClick={() => this.addCarrinho(id)}><span class="material-icons">shopping_cart </span></Botao>
     }
   }
 
