@@ -15,6 +15,7 @@
     "react-dom": "^17.0.0",
     "react-jss": "8.0.0",
     "react-scripts": "^3.4.3",
+    "react-select": "^5.2.2",
     "styled-components": "^5.1.0"
   },
   "scripts": {
