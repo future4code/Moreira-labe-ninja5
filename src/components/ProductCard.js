@@ -4,13 +4,13 @@ import styled from 'styled-components';
 
 const MainContainer = styled.div`
   border-radius: 5px;
-  background-color: #e6930d;
+  background-color: #EC8C00;
   color: white;
   display: flex;
   flex-direction: column;
   width: 300px;
   padding: 10px;
-  margin: 10px;
+  margin: 10px auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   h2{
     margin-left: 10px;
@@ -61,7 +61,7 @@ export class ProductCard extends React.Component {
   render() {
 
     let data = new Date(this.props.dueDate)
-    let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+    let dataFormatada = ((data.getDate() + 1 )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
 
     return (
       <MainContainer>

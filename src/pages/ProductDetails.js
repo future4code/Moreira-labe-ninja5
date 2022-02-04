@@ -3,9 +3,13 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Header from "../components/Header";
 
+const Container = styled.div`
+
+`
+
 const MainContainer = styled.div`
   border-radius: 5px;
-  background-color: #e6930d;
+  background-color: #EC8C00;
   color: white;
   display: flex;
   flex-direction: column;
@@ -132,12 +136,12 @@ class ProductDetails extends React.Component {
     })
   
     let data = new Date(this.props.dueDate)
-    let dataFormatada = ((data.getDate() )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
+    let dataFormatada = ((data.getDate() + 1 )) + "/" + ((data.getMonth() + 1)) + "/" + data.getFullYear();
   
     
 
     return (
-      <div>
+      <Container>
       <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart}></Header>  
       <MainContainer>
         <h2>{this.props.title}</h2>
@@ -154,7 +158,7 @@ class ProductDetails extends React.Component {
           {this.verificaBotaoCarrinho(this.props.taken,this.props.id)}
         </Botoes>
       </MainContainer>
-      </div>
+      </Container>
       
     )
   }
