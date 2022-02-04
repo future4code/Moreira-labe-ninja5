@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 import MainLogo from "../assets/Ninja-logo.png";
+import Emoji from "../components/Emoji";
 
 const MainSection = styled.section`
   background: #071021;
@@ -55,10 +56,11 @@ export class Home extends React.Component {
                 color: "black",
               }}
             >
-              Sou um ninja 🥷
+              Sou um ninja <Emoji symbol="🥷" label="ninja"/>
             </Button>
             <Button variant="contained" onClick={this.props.goToCustomerScreen}>
-              Preciso de um ninja 🙋‍♀️
+              Preciso de um ninja <Emoji symbol="🙋‍♀️" label="woman"/>
+              
             </Button>
           </ButtonsContainer>
         </TextAndButtons>
