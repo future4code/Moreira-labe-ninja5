@@ -22,6 +22,10 @@ const MainContainer = styled.div`
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   font-size: 1.2rem;
   opacity:0.8;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  width: 90%;
+  }
   h2{
     text-align: center;
     font-size: 2rem;

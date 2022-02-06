@@ -19,11 +19,20 @@ const InputsContainer = styled.div`
   align-items: center;
   width: 100%;
   margin: 0 auto;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  flex-wrap: wrap;
+  }
 `
 const InputContainer = styled.div`
   display: flex;
   flex-direction:column;
   width: 200px;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  margin: 10px;
+  width: 100px;
+  }
   input{
     border: 1px solid #e6930d;
     border-radius: 5px;
@@ -37,6 +46,10 @@ const InputContainer = styled.div`
     padding: 10px;
     background-color:transparent;
     color: gray;
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    /* celulares */
+    width: 150px;
+  }
   }
   label{
     color: #e6930d;
@@ -47,9 +60,28 @@ const InputContainer = styled.div`
     text-align:center;
     font-size: 0.8rem;
     margin-left: 5px;
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+      /* celulares */
+      top: 240px;
+      margin-left: 1px;
+      padding: 0 5px;
+    }
   }
-
 `
+ const LabelOrden = styled.p`
+    color: #e6930d;
+    position:absolute;
+    top: 130px;
+    background-color: white;
+    padding: 0 10px;
+    text-align:center;
+    font-size: 0.8rem;
+    margin-left: 5px;
+    @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+      /* celulares */
+      top: 295px;
+    }
+ `
 
 const CardsContainer = styled.div`
   display: flex;
@@ -220,7 +252,7 @@ class CustomerScreen extends React.Component {
             />
           </InputContainer>
           <InputContainer>
-            <label for="orden">Ordenação</label>
+            <LabelOrden for="orden">Ordenação</LabelOrden>
             <select id="orden" value={this.state.ordenacao} onChange={this.atualizaValorOrdenacao}>
               <option value="titulo crescente" >Título Crescente</option>
               <option value="titulo decrescente" >Título Decrescente</option>

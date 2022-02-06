@@ -11,11 +11,19 @@ const MainSection = styled.section`
   align-items: center;
   justify-content: space-evenly;
   background-image: linear-gradient(160deg, #09152d, #09152d, #071021, #071021);
+
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  }
 `;
 
 const TextAndButtons = styled.div`
   display: flex;
-  height: 30vh;
+  height: 40vh;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
@@ -25,6 +33,15 @@ const ButtonsContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-evenly;
+
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  flex-direction: column;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  height: 15vh;
+  }
 `;
 
 const MainTextH1 = styled.h1`
