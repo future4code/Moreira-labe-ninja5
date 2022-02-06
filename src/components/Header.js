@@ -29,8 +29,8 @@ const Slogan = styled.div`
 const ButtonContainer = styled.div`
 display: flex;
 justify-content: space-between;
-width: 20%;
-margin-right: 80px;
+width: 35%;
+margin-right: 50px;
 `
 const Img = styled.img`
   width: 50px;
@@ -47,22 +47,36 @@ export default class Header extends React.Component {
           <Img src={MainLogo}></Img>
           <h1>LabeNinjas</h1>
         </Logo>
-        <Slogan>"O talento certo, no momento certo."</Slogan>
+        <Slogan>O talento certo, no momento certo.</Slogan>
         <ButtonContainer>
-          <Button variant="contained" 
+          <Button 
+            variant="contained" 
             sx={{
               width: 120,
             }}
             onClick={this.props.goToHomeScreen}>
-          <span class="material-icons">home</span>
-             Home</Button>
-          <Button variant="contained" 
-          sx={{
-            width: 120,
-          }}
-          onClick={this.props.goToShoppingCart}>
-          <span class="material-icons">shopping_cart </span>
-            Carrinho</Button>
+            <span class="material-icons">home</span>
+            Home</Button>
+          <Button 
+            variant="contained" 
+            sx={{
+              width: 120,
+            }}
+            onClick={this.props.goToCustomerScreen}>
+            <span class="material-icons">add_business</span>
+            Catálogo
+          </Button>
+          <Button 
+            variant="contained" 
+            sx={{
+              width: 120,
+            }}
+            onClick={this.props.goToShoppingCart}
+          >
+           <span class="material-icons">shopping_cart </span>
+            Carrinho
+          </Button>
+          
             {/* <Button onClick={this.props.goToHomeScreen}>Home</Button>
             <Button onClick={this.props.goToShoppingCart}>Carrinho</Button>    */}
         </ButtonContainer>

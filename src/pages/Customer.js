@@ -1,8 +1,10 @@
 import React from "react";
 import { ProductCard } from '../components/ProductCard'
 import styled from "styled-components";
-import axios from 'axios'
 import Header from "../components/Header";
+import Footer from '../components/Footer'
+import { getServicos } from "../services/requests";
+import { addCarrinho } from "../services/requests";
 
 const MainContainer = styled.div`
   display: flex;
@@ -49,11 +51,11 @@ const InputContainer = styled.div`
 
 `
 
-
 const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 10px;
+  width: 85%;
+  margin: 10px auto;
 `
 
 const Botao = styled.button`
@@ -86,7 +88,6 @@ class CustomerScreen extends React.Component {
 
   state = {
     servicos: [],
-    carrinho: [],
     valorMin: "",
     valorMax: "",
     buscador: "",
@@ -94,55 +95,20 @@ class CustomerScreen extends React.Component {
   }
 
   componentDidMount = () => {
-    this.getServicos()
+    getServicos(this.salvaDados)
   }
 
-
-  getServicos = () => {
-    const url = "https://labeninjas.herokuapp.com/jobs"
-
-    axios.get(url, {
-      headers: {
-        Authorization: "f6ea36c4-47c4-4187-a3fb-38bd313f9559"
-      }
-    })
-    .then(resp => {
-      this.setState({servicos: resp.data.jobs})
-    })
-    .catch(err => {
-      console.log(err)
-    })
+  salvaDados = (data) => {
+    this.setState({servicos: data})
   }
 
-
-  
   verificaBotaoCarrinho = (taken,id) => {
     if(taken) {
       return <BotaoFechado><span class="material-icons">shopping_cart </span></BotaoFechado>
     }
     else {
-      return <Botao onClick={() => this.addCarrinho(id)}><span class="material-icons">shopping_cart </span></Botao>
+      return <Botao onClick={() => addCarrinho(id,this.salvaDados)}><span class="material-icons">shopping_cart </span></Botao>
     }
-  }
-
-  addCarrinho = (id) => {
-    const url = `https://labeninjas.herokuapp.com/jobs/${id}`
-    const body = {
-      "taken":true
-    }
-
-    axios.post(url, body, {
-      headers: {
-        Authorization: "f6ea36c4-47c4-4187-a3fb-38bd313f9559"
-      }
-    })
-    .then(resp => {
-      alert("Serviço Adicionado ao Carrinho")
-      this.getServicos()
-    })
-    .catch(err => {
-      alert("Erro ao Adicionar ao Carrinho")
-    })
   }
 
   atualizaValorMin = (event) => {
@@ -225,7 +191,11 @@ class CustomerScreen extends React.Component {
 
     return (
      <div> 
-      <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart} />
+      <Header 
+        goToHomeScreen={this.props.goToHomeScreen} 
+        goToShoppingCart={this.props.goToShoppingCart} 
+        goToCustomerScreen={this.props.goToCustomerScreen}
+      />
       <MainContainer>
         <InputsContainer>
           <InputContainer>
@@ -264,8 +234,9 @@ class CustomerScreen extends React.Component {
         </InputsContainer>
         <CardsContainer>
           {listaServicos}
-        </CardsContainer>
+        </CardsContainer> 
       </MainContainer>
+      <Footer />
     </div>
     )
   }

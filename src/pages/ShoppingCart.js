@@ -2,23 +2,34 @@ import React from "react";
 import Header from "../components/Header";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
-import Axios from "axios";
+import Footer from '../components/Footer'
+import { getServicos } from "../services/requests";
+import { updateJob } from "../services/requests";
+import { finalizaCompra } from "../services/requests";
 
 
 const MainContainer= styled.div`
 height: 100vh;
+display:flex;
+flex-direction: column;
+justify-content: space-between;
+`
+
+const PageContainer = styled.div`
+  margin-top: 30px;
 `
 
 const CardContainer = styled.div`
   background-color: #EC8C00;
   border-radius: 10px;
-  margin: 10px auto;
+  margin: 20px auto;
   width: 50%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
   padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 `
 
 const ResumoContainer = styled.div`
@@ -52,76 +63,13 @@ class ShoppingCart extends React.Component {
   }
 
   componentDidMount = () => {
-    this.getAllJobs()
+    getServicos(this.salvaDados)
   }
 
-  getAllJobs = () => {
-    const url = "https://labeninjas.herokuapp.com/jobs"
-
-    Axios.get(url, {
-      headers: {
-        Authorization: "f6ea36c4-47c4-4187-a3fb-38bd313f9559"
-      }
-    })
-    .then(resp => {
-      this.setState({servicos: resp.data.jobs})
-    })
-    .catch(err => {
-      alert("Erro ao Coletar Serviços")
-    })
+  salvaDados = (data) => {
+    this.setState({servicos: data})
   }
 
-  updateJob = (id) => {
-    const url = `https://labeninjas.herokuapp.com/jobs/${id}`
-
-    const body = {
-      "taken": false
-  }
-
-    Axios.post(url, body, {
-      headers: {
-        Authorization: "f6ea36c4-47c4-4187-a3fb-38bd313f9559"
-      }
-    })
-    .then(resp => {
-      alert("O serviço foi deletado com sucesso!")
-      this.getAllJobs()
-
-    })
-    .catch(err => {
-      alert("Não possível deletar o serviço")
-    })
-
-  }
-
-  finalizaCompra = () => {
-    const servicosIds = this.state.servicos.map(servico => {
-      return servico.id
-    })
-
-    for(let i=0; i < servicosIds.length - 1 ;i++) {
-      
-      const url = `https://labeninjas.herokuapp.com/jobs/${servicosIds[i]}`
-
-      const body = {
-        "taken": false
-    }
-  
-      Axios.post(url, body, {
-        headers: {
-          Authorization: "f6ea36c4-47c4-4187-a3fb-38bd313f9559"
-        }
-      })
-      .then(resp => {
-        this.getAllJobs()
-      })
-      .catch(err => {
-        alert("Não possível deletar o serviço")
-      })
-    }
-    alert("Compra realizada com sucesso!")
-    
-  }
 
   render() {
 
@@ -136,36 +84,37 @@ class ShoppingCart extends React.Component {
       valorTotal += servico.price
 
       return (
+        
         <CardContainer>
           <Texto>{servico.title}</Texto>
           <ContainerTexto>
             <Texto>R$ {servico.price}</Texto>
             <Icone>
-              <span class="material-icons" onClick={() => this.updateJob(servico.id)}>delete</span>
+              <span class="material-icons" onClick={() => updateJob(servico.id, this.salvaDados)}>delete</span>
             </Icone>
-            {/* <Button variant="contained"
-              onClick={() => this.updateJob(servico.id)}
-              sx={{
-                width: 100,
-                background: "#EFDD08",
-                color: "black",
-              }}
-           >
-           </Button> */}
           </ContainerTexto>
         </CardContainer>
+
       )
     })
-
+    console.log(this.state.servicos)
     return (
+      
       <MainContainer>
-        <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart} />
-        {servicosCarrinho}
-        <ResumoContainer>
-          <h2>Preço Total: R$ {valorTotal}</h2>
-          
-          <Button variant="contained" onClick={this.finalizaCompra}>Contratar Serviço 🙋‍♀️</Button>
-        </ResumoContainer>
+        <Header 
+          goToHomeScreen={this.props.goToHomeScreen} 
+          goToShoppingCart={this.props.goToShoppingCart} 
+          goToCustomerScreen={this.props.goToCustomerScreen}
+        />    
+        <PageContainer>
+          {servicosCarrinho}
+          <ResumoContainer>
+            <h2>Preço Total: R$ {valorTotal}</h2>
+            
+            <Button variant="contained" onClick={() => finalizaCompra(this.state.servicos,this.salvaDados)}>Contratar Serviço 🙋‍♀️</Button>
+          </ResumoContainer>
+        </PageContainer>        
+        <Footer />
       </MainContainer>
     )
   }
