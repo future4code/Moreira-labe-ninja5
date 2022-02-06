@@ -2,10 +2,15 @@ O site funciona como deveria. Um bug identificado é o emoji do ninja no botão 
 
 ## Link do surge:
 
-tightfisted-manager.surge.sh
+https://natural-tail.surge.sh
 
-
+- Home
 ![Screenshot_1](https://user-images.githubusercontent.com/90166189/152693562-6ed7f91f-e963-4199-b17c-ff89ed214b01.jpg)
-![Screenshot_2](https://user-images.githubusercontent.com/90166189/152693567-3c75f986-03f2-49a6-b962-42f60037779c.jpg)
-![Screenshot_3](https://user-images.githubusercontent.com/90166189/152693569-71ff7804-ca83-4a8a-ab2e-2b023654244a.jpg)
-![Screenshot_4](https://user-images.githubusercontent.com/90166189/152693576-37420180-aaa2-45a6-bb35-dacdd79fcc1f.jpg)
+- Cadastro
+![image](https://user-images.githubusercontent.com/83484522/152704435-0e1b3a33-d918-48e1-ab89-ae84a5809d04.png)
+- Catálogo
+![image](https://user-images.githubusercontent.com/83484522/152704411-5b2e8b0a-1ab9-4d9e-a237-5338a8445dc5.png)
+- Detalhes
+![image](https://user-images.githubusercontent.com/83484522/152704453-97217dc2-0cf3-4a62-ab13-3602bf4d355e.png)
+- Carrinho
+![image](https://user-images.githubusercontent.com/83484522/152704468-6b03a77a-d6f9-4262-a534-8d909849a5d5.png)
