@@ -36,6 +36,7 @@ class App extends React.Component {
             irParaCarrinho={this.irParaCarrinho}
             goToHomeScreen={this.goToHomeScreen}
             goToShoppingCart={this.goToShoppingCart}
+            goToCustomerScreen={this.goToCustomerScreen}
           />
         );
       case "freelancer":
@@ -43,6 +44,7 @@ class App extends React.Component {
           <FreelancerScreen
             goToHomeScreen={this.goToHomeScreen}
             goToShoppingCart={this.goToShoppingCart}
+            goToCustomerScreen={this.goToCustomerScreen}
           />
         );
       case "details":
@@ -72,6 +74,7 @@ class App extends React.Component {
             taken={this.state.taken}
             goToHomeScreen={this.goToHomeScreen}
             goToShoppingCart={this.goToShoppingCart}
+            goToCustomerScreen={this.goToCustomerScreen}
           />
         );
       default:

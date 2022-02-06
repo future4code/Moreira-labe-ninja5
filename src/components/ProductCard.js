@@ -12,6 +12,7 @@ const MainContainer = styled.div`
   padding: 10px;
   margin: 10px auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  opacity: 0.8;
   h2{
     margin-left: 10px;
   }

@@ -1,7 +1,10 @@
 import React from "react";
 import styled from 'styled-components';
-import axios from 'axios';
 import Header from "../components/Header";
+import Footer from '../components/Footer'
+import { getServicos } from "../services/requests";
+import { addCarrinho } from "../services/requests";
+
 
 const Container = styled.div`
 
@@ -15,9 +18,10 @@ const MainContainer = styled.div`
   flex-direction: column;
   width: 500px;
   padding: 10px;
-  margin: 10px auto;
+  margin: 60px auto;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   font-size: 1.2rem;
+  opacity:0.8;
   h2{
     text-align: center;
     font-size: 2rem;
@@ -27,10 +31,9 @@ const Descricao = styled.p`
   border-radius: 5px;
   padding: 20px 10px;
   margin-top: 10px;
-  text-align: center;
+  text-align: justify;
   background-color: whitesmoke;
   color: #e6930d;
-  font-weight: bold;
 `
 
 const Pagamento = styled.div`
@@ -81,24 +84,11 @@ const BotaoFechado = styled.button`
 class ProductDetails extends React.Component {
 
   componentDidUpdate = () => {
-    this.getServicos()
+    getServicos(this.salvaDados)
   }
 
-
-  getServicos = () => {
-    const url = "https://labeninjas.herokuapp.com/jobs"
-
-    axios.get(url, {
-      headers: {
-        Authorization: "f6ea36c4-47c4-4187-a3fb-38bd313f9559"
-      }
-    })
-    .then(resp => {
-      this.setState({servicos: resp.data.jobs})
-    })
-    .catch(err => {
-      console.log(err)
-    })
+  salvaDados = (data) => {
+    this.setState({servicos: data})
   }
 
   verificaBotaoCarrinho = (taken,id) => {
@@ -106,27 +96,8 @@ class ProductDetails extends React.Component {
       return <BotaoFechado><span class="material-icons">shopping_cart </span></BotaoFechado>
     }
     else {
-      return <Botao onClick={() => this.addCarrinho(id)}><span class="material-icons">shopping_cart </span></Botao>
+      return <Botao onClick={() => addCarrinho(id,this.salvaDados)}><span class="material-icons">shopping_cart </span></Botao>
     }
-  }
-
-  addCarrinho = (id) => {
-    const url = `https://labeninjas.herokuapp.com/jobs/${id}`
-    const body = {
-      "taken":true
-    }
-
-    axios.post(url, body, {
-      headers: {
-        Authorization: "f6ea36c4-47c4-4187-a3fb-38bd313f9559"
-      }
-    })
-    .then(resp => {
-      alert("Serviço Adicionado ao Carrinho")
-    })
-    .catch(err => {
-      alert("Erro ao Adicionar ao Carrinho")
-    })
   }
 
   render() {
@@ -142,7 +113,11 @@ class ProductDetails extends React.Component {
 
     return (
       <Container>
-      <Header goToHomeScreen={this.props.goToHomeScreen} goToShoppingCart={this.props.goToShoppingCart}></Header>  
+      <Header 
+        goToHomeScreen={this.props.goToHomeScreen} 
+        goToShoppingCart={this.props.goToShoppingCart}
+        goToCustomerScreen={this.props.goToCustomerScreen}
+      />
       <MainContainer>
         <h2>{this.props.title}</h2>
         <Descricao>{this.props.description}</Descricao>
@@ -160,14 +135,11 @@ keyboard_return
           {this.verificaBotaoCarrinho(this.props.taken,this.props.id)}
         </Botoes>
       </MainContainer>
+      <Footer />
       </Container>
       
     )
-  }
-  
-
-
-  
+  } 
 }
 
 export default ProductDetails
