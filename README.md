@@ -2,7 +2,7 @@ O site funciona como deveria. Um bug identificado é o emoji do ninja no botão 
 
 ## Link do surge:
 
-https://natural-tail.surge.sh
+http://abandoned-side.surge.sh
 
 - Home
 ![Screenshot_1](https://user-images.githubusercontent.com/90166189/152693562-6ed7f91f-e963-4199-b17c-ff89ed214b01.jpg)
