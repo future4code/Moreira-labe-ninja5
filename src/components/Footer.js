@@ -16,6 +16,20 @@ height: 100px;
 color: whitesmoke;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 border-radius: 5px 5px 0 0;
+position: relative;
+bottom: 0;
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  padding: 10px;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 250px;
+  text-align:center;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  }
 
 h1{
     margin-left: 20px;

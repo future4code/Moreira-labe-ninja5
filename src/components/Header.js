@@ -13,6 +13,15 @@ color: whitesmoke;
 box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 border-radius: 0 0 5px 5px;
 
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  padding: 10px;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 180px;
+  text-align:center;
+  }
+
 h1{
     margin-left: 20px;
 }
@@ -31,6 +40,14 @@ display: flex;
 justify-content: space-between;
 width: 35%;
 margin-right: 50px;
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  /* padding: 20px; */
+  /* flex-direction: column; */
+  width: 100%;
+  margin: 10px auto;
+  }
 `
 const Img = styled.img`
   width: 50px;

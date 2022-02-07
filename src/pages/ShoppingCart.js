@@ -8,6 +8,7 @@ import { updateJob } from "../services/requests";
 import { finalizaCompra } from "../services/requests";
 
 
+
 const MainContainer= styled.div`
 height: 100vh;
 display:flex;
@@ -30,6 +31,10 @@ const CardContainer = styled.div`
   color: white;
   padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  width: 80%;
+  }
 `
 
 const ResumoContainer = styled.div`
@@ -38,9 +43,17 @@ const ResumoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  width: 80%;
+  }
 `
 const Texto = styled.p`
   font-size: 20px;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  font-size: 16px;
+  }
 `
 const ContainerTexto = styled.div`
   display: flex;
@@ -54,7 +67,14 @@ const Icone = styled.span`
     transform: scale(1.1,1.1)
   }  
 `
-
+const Loading = styled.div`
+  display: flex;
+  width: 10%;
+  justify-content: space-evenly;
+  margin: 20px auto;
+  font-size: 30px;
+  font-weight: bold;
+`
 
 class ShoppingCart extends React.Component {
 
@@ -97,7 +117,7 @@ class ShoppingCart extends React.Component {
 
       )
     })
-    console.log(this.state.servicos)
+  
     return (
       
       <MainContainer>
@@ -106,14 +126,23 @@ class ShoppingCart extends React.Component {
           goToShoppingCart={this.props.goToShoppingCart} 
           goToCustomerScreen={this.props.goToCustomerScreen}
         />    
-        <PageContainer>
-          {servicosCarrinho}
-          <ResumoContainer>
-            <h2>Preço Total: R$ {valorTotal}</h2>
-            
-            <Button variant="contained" onClick={() => finalizaCompra(this.state.servicos,this.salvaDados)}>Contratar Serviço 🙋‍♀️</Button>
-          </ResumoContainer>
-        </PageContainer>        
+        
+          {this.state.servicos && valorTotal ?
+            (<div>
+              <PageContainer>
+                {servicosCarrinho}
+                <ResumoContainer>
+                  <h2>Preço Total: R$ {valorTotal}</h2>
+                  <Button variant="contained" onClick={() => finalizaCompra(this.state.servicos,this.salvaDados)}>Contratar Serviço 🙋‍♀️</Button>
+                </ResumoContainer>
+              </PageContainer>    
+            </div>)
+            : 
+            <Loading>
+              <span class="material-icons">loop</span>
+              <Texto>Carregando...</Texto>
+            </Loading>
+          } 
         <Footer />
       </MainContainer>
     )

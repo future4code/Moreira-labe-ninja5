@@ -29,6 +29,11 @@ border-radius:15px;
 border: none;
 background-color:#ec8c00;
 box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  width: 90%;
+  }
 `
 const Input = styled.input`
 width:50%;
@@ -38,6 +43,10 @@ font-size:20px;
 padding-left:10px;
 border-radius:10px;
 border:none;
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  width: 90%;
+  }
 `
 
 const Botao = styled.button`
@@ -66,6 +75,10 @@ padding-left:10px;
 border-radius:10px;
 border:none;
 color: grey;
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  width: 90%;
+  }
 
 `
 
