@@ -8,6 +8,7 @@ import { updateJob } from "../services/requests";
 import { finalizaCompra } from "../services/requests";
 
 
+
 const MainContainer= styled.div`
 height: 100vh;
 display:flex;
@@ -66,7 +67,14 @@ const Icone = styled.span`
     transform: scale(1.1,1.1)
   }  
 `
-
+const Loading = styled.div`
+  display: flex;
+  width: 10%;
+  justify-content: space-evenly;
+  margin: 20px auto;
+  font-size: 30px;
+  font-weight: bold;
+`
 
 class ShoppingCart extends React.Component {
 
@@ -109,7 +117,7 @@ class ShoppingCart extends React.Component {
 
       )
     })
-    console.log(this.state.servicos)
+  
     return (
       
       <MainContainer>
@@ -118,14 +126,23 @@ class ShoppingCart extends React.Component {
           goToShoppingCart={this.props.goToShoppingCart} 
           goToCustomerScreen={this.props.goToCustomerScreen}
         />    
-        <PageContainer>
-          {servicosCarrinho}
-          <ResumoContainer>
-            <h2>Preço Total: R$ {valorTotal}</h2>
-            
-            <Button variant="contained" onClick={() => finalizaCompra(this.state.servicos,this.salvaDados)}>Contratar Serviço 🙋‍♀️</Button>
-          </ResumoContainer>
-        </PageContainer>        
+        
+          {this.state.servicos && valorTotal ?
+            (<div>
+              <PageContainer>
+                {servicosCarrinho}
+                <ResumoContainer>
+                  <h2>Preço Total: R$ {valorTotal}</h2>
+                  <Button variant="contained" onClick={() => finalizaCompra(this.state.servicos,this.salvaDados)}>Contratar Serviço 🙋‍♀️</Button>
+                </ResumoContainer>
+              </PageContainer>    
+            </div>)
+            : 
+            <Loading>
+              <span class="material-icons">loop</span>
+              <Texto>Carregando...</Texto>
+            </Loading>
+          } 
         <Footer />
       </MainContainer>
     )

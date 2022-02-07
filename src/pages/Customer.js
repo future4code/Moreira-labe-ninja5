@@ -6,6 +6,12 @@ import Footer from '../components/Footer'
 import { getServicos } from "../services/requests";
 import { addCarrinho } from "../services/requests";
 
+const Pagina = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -113,8 +119,21 @@ const BotaoFechado = styled.button`
   border-radius: 5px;
   width: 130px;
 `
-
-
+const Loading = styled.div`
+  display: flex;
+  width: 10%;
+  justify-content: space-evenly;
+  margin: 20px auto;
+  font-size: 30px;
+  font-weight: bold;
+`
+const Texto = styled.p`
+  font-size: 20px;
+  @media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  /* celulares */
+  font-size: 16px;
+  }
+`
 
 class CustomerScreen extends React.Component {
 
@@ -165,6 +184,8 @@ class CustomerScreen extends React.Component {
 
   render() {
     
+    let carregando = false
+
     const listaServicos = this.state.servicos
     .filter(servico => {
       return servico.price >= this.state.valorMin
@@ -202,6 +223,7 @@ class CustomerScreen extends React.Component {
       }
     })
     .map(servico => {
+      carregando = true
       return <ProductCard key={servico.id}
               id = {servico.id} 
               title = {servico.title}
@@ -222,54 +244,64 @@ class CustomerScreen extends React.Component {
     })
 
     return (
-     <div> 
+     <Pagina> 
       <Header 
         goToHomeScreen={this.props.goToHomeScreen} 
         goToShoppingCart={this.props.goToShoppingCart} 
         goToCustomerScreen={this.props.goToCustomerScreen}
       />
+      {this.state.servicos && carregando ?
       <MainContainer>
-        <InputsContainer>
-          <InputContainer>
-            <label for="valMin">Valor Mínimo</label>
-            <input id ="valMin" type="number" placeholder="R$" 
-                   value={this.state.valorMin} 
-                   onChange={this.atualizaValorMin}
-            />
-          </InputContainer>
-          <InputContainer>
-            <label for="valMax">Valor Máximo</label>
-            <input id ="valMax" type="number" placeholder="R$"
-                   value={this.state.valorMax} 
-                   onChange={this.atualizaValorMax}
-            />
-          </InputContainer>
-          <InputContainer>
-            <label for="titulo">Busca por Título</label>
-            <input id ="titulo" type="text" placeholder="Nome"
-                   value={this.state.buscador} 
-                   onChange={this.atualizaValorBuscador}
-            />
-          </InputContainer>
-          <InputContainer>
-            <LabelOrden for="orden">Ordenação</LabelOrden>
-            <select id="orden" value={this.state.ordenacao} onChange={this.atualizaValorOrdenacao}>
-              <option value="titulo crescente" >Título Crescente</option>
-              <option value="titulo decrescente" >Título Decrescente</option>
-              <option value="prazo crescente" >Prazo Crescente</option>
-              <option value="prazo decrescente" >Prazo Decrescente</option>
-              <option value="crescente" >Preço Crescente</option>
-              <option value="decrescente" >Preço Decrescente</option>
-            </select>
-          </InputContainer>
-          <Botao onClick={this.limparFiltros}>Limpar Filtros</Botao>
-        </InputsContainer>
-        <CardsContainer>
-          {listaServicos}
-        </CardsContainer> 
-      </MainContainer>
+      <InputsContainer>
+        <InputContainer>
+          <label for="valMin">Valor Mínimo</label>
+          <input id ="valMin" type="number" placeholder="R$" 
+                 value={this.state.valorMin} 
+                 onChange={this.atualizaValorMin}
+          />
+        </InputContainer>
+        <InputContainer>
+          <label for="valMax">Valor Máximo</label>
+          <input id ="valMax" type="number" placeholder="R$"
+                 value={this.state.valorMax} 
+                 onChange={this.atualizaValorMax}
+          />
+        </InputContainer>
+        <InputContainer>
+          <label for="titulo">Busca por Título</label>
+          <input id ="titulo" type="text" placeholder="Nome"
+                 value={this.state.buscador} 
+                 onChange={this.atualizaValorBuscador}
+          />
+        </InputContainer>
+        <InputContainer>
+          <LabelOrden for="orden">Ordenação</LabelOrden>
+          <select id="orden" value={this.state.ordenacao} onChange={this.atualizaValorOrdenacao}>
+            <option value="titulo crescente" >Título Crescente</option>
+            <option value="titulo decrescente" >Título Decrescente</option>
+            <option value="prazo crescente" >Prazo Crescente</option>
+            <option value="prazo decrescente" >Prazo Decrescente</option>
+            <option value="crescente" >Preço Crescente</option>
+            <option value="decrescente" >Preço Decrescente</option>
+          </select>
+        </InputContainer>
+        <Botao onClick={this.limparFiltros}>Limpar Filtros</Botao>
+      </InputsContainer>
+      <CardsContainer>
+        {listaServicos}
+      </CardsContainer> 
+    </MainContainer>
+
+    : 
+    <Loading>
+    <span class="material-icons">loop</span>
+    <Texto>Carregando...</Texto>
+  </Loading>
+    
+      }
+      
       <Footer />
-    </div>
+    </Pagina>
     )
   }
 }
